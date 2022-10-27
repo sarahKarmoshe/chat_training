@@ -1,5 +1,6 @@
 <?php
 
+use App\Http\Controllers\MessageController;
 use App\Http\Controllers\RegisterController;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
@@ -26,6 +27,7 @@ Route::post('login', [RegisterController::class, 'login']);
 Route::middleware('auth:api')->group(function () {
 
     Route::get('logout', [RegisterController::class, 'logout']);
+    Route::get('show_all_users',[MessageController::class,'show']);
 
 
 

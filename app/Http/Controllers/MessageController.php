@@ -5,17 +5,25 @@ namespace App\Http\Controllers;
 use App\Models\Message;
 use App\Http\Requests\StoreMessageRequest;
 use App\Http\Requests\UpdateMessageRequest;
+use App\Models\Message_receipent;
+use App\Models\User;
+use Illuminate\Support\Facades\Auth;
+use Symfony\Component\HttpFoundation\Response;
 
 class MessageController extends Controller
 {
     /**
      * Display a listing of the resource.
      *
-     * @return \Illuminate\Http\Response
+     * @return \Illuminate\Http\jsonResponse
      */
     public function index()
     {
-        //
+        //show my message
+        $message= Message::query()->where('user_id','=',Auth::id());
+        $conversation=Message_receipent::query()->where('user_id','=',Auth::id());
+
+        return response()->json();
     }
 
     /**
@@ -32,12 +40,15 @@ class MessageController extends Controller
     /**
      * Display the specified resource.
      *
-     * @param  \App\Models\Message  $message
-     * @return \Illuminate\Http\Response
+     * @return \Illuminate\Http\jsonResponse
      */
-    public function show(Message $message)
+
+    // show all users in the app
+    public function show()
     {
-        //
+        $users=User::query()->where('id','!=',Auth::id())->get();
+        return response()->json($users , Response::HTTP_OK);
+
     }
 
     /**
