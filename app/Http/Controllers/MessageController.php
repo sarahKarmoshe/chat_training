@@ -22,6 +22,7 @@ class MessageController extends Controller
         //show my message
         $message= Message::query()->where('user_id','=',Auth::id());
         $conversation=Message_receipent::query()->where('user_id','=',Auth::id());
+        //$hiii
 
         return response()->json();
     }
@@ -30,7 +31,7 @@ class MessageController extends Controller
      * Store a newly created resource in storage.
      *
      * @param  \App\Http\Requests\StoreMessageRequest  $request
-     * @return \Illuminate\Http\Response
+     * @return \Illuminate\Http\jsonResponse
      */
     public function store(StoreMessageRequest $request)
     {
