@@ -30,11 +30,17 @@ class MessageController extends Controller
      * Store a newly created resource in storage.
      *
      * @param  \App\Http\Requests\StoreMessageRequest  $request
-     * @return \Illuminate\Http\Response
+     * @return \Illuminate\Http\jsonResponse
      */
     public function store(StoreMessageRequest $request)
     {
-        //
+        //send new message
+        $message=Message::query()->create([
+            'message_content'=>$request->message_content,
+            'user_id'=>Auth::id(),
+        ]);
+
+        return response()->json($message,Response::HTTP_CREATED);
     }
 
     /**
