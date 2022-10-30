@@ -35,7 +35,13 @@ class MessageController extends Controller
      */
     public function store(StoreMessageRequest $request)
     {
-        //
+        //send new message
+        $message=Message::query()->create([
+            'message_content'=>$request->message_content,
+            'user_id'=>Auth::id(),
+        ]);
+
+        return response()->json($message,Response::HTTP_CREATED);
     }
 
     /**
