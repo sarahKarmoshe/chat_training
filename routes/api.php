@@ -28,7 +28,9 @@ Route::middleware('auth:api')->group(function () {
 
     Route::get('logout', [RegisterController::class, 'logout']);
     Route::get('show_all_users',[MessageController::class,'show']);
-    Route::get('send_message',[MessageController::class,'store']);
+    Route::post('send_message',[MessageController::class,'store']);
+    Route::get('show_specific_conversation/{recipient_id}',[MessageController::class,'index']);
+    Route::get('show_my_conversation',[MessageController::class,'show_my_conversations']);
 
 
 
