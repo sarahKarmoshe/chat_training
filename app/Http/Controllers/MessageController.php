@@ -23,6 +23,7 @@ class MessageController extends Controller
         $message= Message::query()->where('user_id','=',Auth::id());
         $conversation=Message_receipent::query()->where('user_id','=',Auth::id());
         //$hiii
+        //byy
 
         return response()->json();
     }
