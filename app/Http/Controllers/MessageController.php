@@ -45,6 +45,9 @@ class MessageController extends Controller
     public function index($recipient_id)
     {
         //show my message
+        $message= Message::query()->where('user_id','=',Auth::id());
+        $conversation=Message_receipent::query()->where('user_id','=',Auth::id());
+        //$hiii
 
         $conversation = Message_receipent::query()->where('recipient_id', '=', $recipient_id)
             ->join('messages', 'message_receipents.message_id', '=', 'messages.id')
